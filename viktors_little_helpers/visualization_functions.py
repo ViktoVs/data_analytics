@@ -1,11 +1,27 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 #lineplot
 
 #lineplot from dataFrame
-def dfLineplot(index, columns, *args, **kwargs):
-    return **kwargs
+def df_lineplot(df, index, columns):
+    """
+    Create a Linplot from a dataframe. Sets a specific Column as Index and draws all lines in the columns list
+    """
+    df = df.set_index(index)[columns]
+    fig = plt.figure(figsize=(16,10))
+    plt.xticks(rotation=90)
+    plt.grid(axis="y", linestyle="--")
+    display(sns.lineplot(df))
 
 #histogramm
-
+def df_histogram(df, column):
+    """
+    Create a Histogram with a KDE curve
+    """
+    fig = plt.figure(figsize=(16,10))
+    plt.grid(axis="y", linestyle="--")
+    display(sns.histplot(df[column], kde=True))
 #histogram from dataFrame
 
 # boxplot
