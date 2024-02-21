@@ -1,6 +1,8 @@
 import pandas as pd
 import re
 
+### to-do add some histograms for each value
+
 def df_quick_check(df):
     # Check and count each column for:
     results_dict = {"Name": []
