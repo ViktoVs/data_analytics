@@ -1,3 +1,4 @@
+# install snowflake-connector-python not snowflake
 import snowflake.connector
 from sqlalchemy import create_engine
 from snowflake.sqlalchemy import URL

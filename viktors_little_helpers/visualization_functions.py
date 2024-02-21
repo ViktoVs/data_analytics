@@ -44,3 +44,30 @@ def sns_barplot(df, x, y, hue=None, figsize=(12, 8), fmt="d"):
 def sns_heatmap(df, hue=None, figsize=(12, 8), fmt="d"):
     fig, ax = plt.subplots(figsize)
     display((sns.heatmap(data=df, ax=ax, annot=True, fmt=fmt, cbar=False)).figure)
+
+
+def draw_sankey(
+    sources
+    , targets
+    , values
+    , node_labels
+    , node_colors
+    , link_colors
+    ):
+    
+    fig = go.Figure(data=[go.Sankey(
+        node = dict(
+        pad = 15,
+        thickness = 20,
+        line = dict(color = "black", width = 0.5),
+        label = node_labels,
+        color = node_colors
+        ),
+        link = dict(
+        source = sources, 
+        target = targets,
+        value = values,
+        color = link_colors
+    ))])
+
+    return fig
