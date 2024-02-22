@@ -14,7 +14,7 @@ import gspread_dataframe as gd
 
 ### Setup authentication to google sheets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("name_of_file")
+creds = ServiceAccountCredentials.from_json_keyfile_name("[path_to_file]")
 g_client = gspread.authorize(creds)
 
 def write_to_g_sheet(
@@ -33,7 +33,8 @@ def write_to_g_sheet(
     ws = g_client.open(file_name).worksheet(tab_name)
     ws.clear()
     gd.set_with_dataframe(ws, df)
-    return f"Written the dataframe to {filename} in tab {tab_name}"
+    return f"Written the dataframe to {file_name} in tab {tab_name}"
+
 
 def read_g_sheet(file_name
                  , tab_name
@@ -48,6 +49,7 @@ def read_g_sheet(file_name
     data = ws.get_all_values()
     header = data.pop(0)
     return pd.DataFrame(data, columns=header)
+
 
 def write_multiple_dfs_to_g_sheet(df_list
                                   , file_name
@@ -74,4 +76,4 @@ def write_multiple_dfs_to_g_sheet(df_list
         else:
             c = c + 2 + len(df.columns) # add 2 plus the length of the DataFrame's columns to the columns pointer to have the startpoint for the next iteration
 
-    return f"Written the dataframe to {filename} in tab {tab_name}"
+    return f"Written the dataframe to {file_name} in tab {tab_name}"

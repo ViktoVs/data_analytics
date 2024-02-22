@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.graph_objects as go
 
-#lineplot
 
 #lineplot from dataFrame
 def df_lineplot(df, index, columns):
@@ -12,7 +12,7 @@ def df_lineplot(df, index, columns):
     fig = plt.figure(figsize=(16,10))
     plt.xticks(rotation=90)
     plt.grid(axis="y", linestyle="--")
-    display(sns.lineplot(df))
+    return sns.lineplot(df)
 
 #histogramm
 def df_histogram(df, column):
@@ -21,7 +21,7 @@ def df_histogram(df, column):
     """
     fig = plt.figure(figsize=(16,10))
     plt.grid(axis="y", linestyle="--")
-    display(sns.histplot(df[column], kde=True))
+    return sns.histplot(df[column], kde=True)
 #histogram from dataFrame
 
 # boxplot
@@ -29,21 +29,21 @@ def sns_boxplot(df, x, y, hue=None, figsize=(12, 8), y_limit=None):
     fig, ax = plt.subplots(figsize)
     if y_limit is not None:
         ax.set(ylim=(0, y_limit))
-    display((sns.boxplot(data=df, x=x, y=y, hue=hue, ax=ax)).figure)
+    return sns.boxplot(data=df, x=x, y=y, hue=hue, ax=ax)
 
 #boxplot from dataFrame
 
 #barplot
 def sns_barplot(df, x, y, hue=None, figsize=(12, 8), fmt="d"):
     fig, ax = plt.subplots(figsize=figsize)
-    display((sns.barplot(data=df, x=x, y=y, ci=95, hue=hue, ax=ax)).figure)
+    return sns.barplot(data=df, x=x, y=y, ci=95, hue=hue, ax=ax)
 
 #barplot rom dataFrame
 
 #heatmap
 def sns_heatmap(df, hue=None, figsize=(12, 8), fmt="d"):
     fig, ax = plt.subplots(figsize)
-    display((sns.heatmap(data=df, ax=ax, annot=True, fmt=fmt, cbar=False)).figure)
+    return sns.heatmap(data=df, ax=ax, annot=True, fmt=fmt, cbar=False)
 
 
 def draw_sankey(

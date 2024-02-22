@@ -8,7 +8,7 @@ def correlation_search_df(df, date_column, correlation_columns, metric_column):
     This function takes a data frame and checks for correlation in the data over time. 
     :param df: dataframe to look at
     :param date_column: the dimension for which we are looking for correlation e.g. results over time
-    :param correlation_columns: What other dimensions we want to check for correlation with thedate colum
+    :param correlation_columns: What other dimensions we want to check for correlation with thedate column
     :param metric_column: the metric of interest
     """
     # transform date column to date format and metric to numeric

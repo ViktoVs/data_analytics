@@ -21,8 +21,8 @@ import gspread
 import gspread_dataframe as gd
 
 ### Setup authentication to google sheets
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("name_of_file")
+scopes = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("[path_to_file]")
 g_client = gspread.authorize(creds)
 
 def update_charts_in_gslide(PRESENTATION_ID: str
@@ -36,10 +36,6 @@ def update_charts_in_gslide(PRESENTATION_ID: str
     """
 
     # Set up connection
-    scopes = ["https://www.googleapis.com/auth/presentations", "https://www.googleapis.com/auth/spreadsheets.readonly"]
-
-    creds = ServiceAccountCredentials.from_json_keyfile_name(path_to_service_file)
-
     service = build("slides", "v1", credentials=creds)
 
     # Call the slides API

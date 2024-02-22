@@ -1,7 +1,6 @@
 # install snowflake-connector-python not snowflake
 import snowflake.connector
 from sqlalchemy import create_engine
-from snowflake.sqlalchemy import URL
 from snowflake.connector.pandas_tools import write_pandas
 
 
@@ -71,4 +70,4 @@ class SnowFlakeConnector():
 class PostgreSQLConnector():
     
     def __init():
-        return
+        print("connect to Postgres ...")

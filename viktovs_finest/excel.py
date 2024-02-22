@@ -1,4 +1,4 @@
-from openpyxl import load_notebook
+from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 
 def write_df_to_excel(

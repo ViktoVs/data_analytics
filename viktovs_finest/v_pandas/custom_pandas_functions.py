@@ -1,3 +1,5 @@
+import pandas as pd
+
 # weighted average
 def add_w_avg(row, avg_name, weight_name):
     return (row[avg_name] * row[weight_name]).sum() / row[weight_name].sum()
@@ -6,14 +8,14 @@ def shares_by_dimenstion(df
                          , dimension : list
                          , split_dimension
                          , value
-                         , benchmark_name = "Peer Group"
+                         , benchmark_name = "Benchmark"
                         ):
     """
     Takes two columns of a dataframe and calculates the shares for a specific value
     :param dimension: Dimension you want to have the shares for
     :param split_dimension: The shares will be split among these two dimensions
     :param value: the metric you want to transfer into shares
-    :param:benchmark_name:
+    :param:benchmark_name if you want to compare it to another dimension:
     :return: pandas DataFrame
     """
     # pivot the dataframe to aggregat dimension and split dimension
@@ -24,7 +26,7 @@ def shares_by_dimenstion(df
                              )
 
     # extract different entries from split dimension
-    temp_list = list(df[split_dimension]).unique())
+    temp_list = list(df[split_dimension]).unique()
     temp_list.sort()
 
     # loop throught columns to calculate each share
@@ -73,7 +75,7 @@ def transform_two_line_df_into_one_line_df(df
     :param second_half_name: The Prefix added to the new Columns
     """
     if sort_output_by:
-        index_list = sour_output_by
+        index_list = sort_output_by
     else:
         index_list = list(df.index)
 
@@ -123,7 +125,7 @@ def dimension_as_horizontal_shares_in_columns(df
     temp_df["Total"] = temp_df.sum(axis=1)
 
     # calculate shares for all columns and drop obsolete columns
-    for column in columns:
+    for column in column_list:
         temp_df[f"{column}_share"] = temp_df[column] / temp_df["Total"]
         temp_df[f"{column}_share"].fillna(0, inplace = True)
         temp_df[f"{column}_share"] = temp_df[f"{column}_share"].astype(float).map("{:.8}".format)
